@@ -1,63 +1,68 @@
-# AI Experts Assignment (JS/TS)
+# AI Software Engineer Assignment (TS)
 
-This assignment evaluates your ability to:
+This project contains a minimal HTTP client implementation with tests that reproduce and verify a bug fix in OAuth token handling.
 
-- set up a small JavaScript/TypeScript project to run reliably (locally + in Docker),
-- pin dependencies for reproducible installs,
-- write focused tests to reproduce a bug,
-- implement a minimal, reviewable fix.
+---
 
-## What you will do
+## Prerequisites
 
-### 1) Dockerfile (required)
+- Node.js (v20+ recommended)
+- npm
+- Docker (optional, for containerized test runs)
 
-Create a `Dockerfile` so the project can run the test suite in a non-interactive, CI-style environment.
+---
 
-Requirements:
+## Install dependencies (local)
 
-- Your Docker image must run the test suite by default using npm test.
-- Ensure npm test works in a clean environment (Docker) without manual steps.
-- The build must install dependencies from package.json using npm install.
-- The image must run tests by default (use: `CMD ["npm", "test"]`).
+Dependencies are pinned to exact versions for reproducibility.
 
-### 2) Pin dependencies (required)
+```bash
+npm install
+```
 
-- Pin dependency versions in package.json (no ^ / ~; use exact x.y.z).
-- Do not commit lockfiles (package-lock.json, yarn.lock, pnpm-lock.yaml).
+---
 
-### 3) README updates (required)
+## Run tests locally
 
-Update this README to include:
+```bash
+npm test
+```
 
-- how to run the tests locally,
-- how to build and run tests with Docker.
+This runs the Vitest test suite in a clean Node environment.
 
-### 4) Find + fix a bug (required)
+---
 
-There is a bug somewhere in this repository.
+## Run tests with Docker
 
-Your tasks:
+Build the container:
 
-- Identify the bug.
-- Apply the smallest possible fix to make the tests pass.
-- Keep the change minimal and reviewable (no refactors).
+```bash
+docker build -t ai-assignment .
+```
 
-## Constraints
+Run tests inside Docker:
 
-- Keep changes minimal and reviewable.
-- Do not refactor unrelated code.
-- Do not introduce extra tooling unless required.
-- You may add tests and the smallest code change needed to fix the bug.
+```bash
+docker run --rm ai-assignment
+```
 
-### 5) EXPLANATION.md (required)
+The container installs dependencies and executes the test suite automatically.
 
-Create `EXPLANATION.md` (max 250 words) containing:
+---
 
-- **What was the bug?**
-- **Why did it happen?**
-- **Why does your fix solve it?**
-- **One realistic case / edge case your tests still don’t cover**
+## Project structure
 
-## Submission
+```
+src/        → application code
+tests/      → test suite
+Dockerfile  → CI-style test container
+Explanation.md → bug explanation and fix reasoning
+```
 
-- Submit a public GitHub repository URL containing your solution to the Google form link provided.
+---
+
+## Notes
+
+- Dependency versions are pinned exactly in `package.json`.
+- Lockfiles are intentionally excluded per assignment requirements.
+- Tests demonstrate the bug and verify the minimal fix.
